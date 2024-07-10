@@ -4,4 +4,6 @@ PAM is a vehicular fog computing based healthcare proposal that  leverages compu
 ### Step 1:
 Load and initialize the parameters with required values saved in matlab data file "workspace27Sep2023PDFAllmethodsV5.mat"
 ### Step 2:
-Now the expected response latencies by PAM, mCT, MCT, and FCFS need to be confirmed. These response latencies are retrieved using simulating/experimenting the VFC-enabled distributed computing infrastructure.
+Now the expected response latencies by PAM, mCT, MCT, and FCFS need to be confirmed. These response latencies are retrieved using simulating/experimenting the VFC-enabled distributed computing infrastructure. This simulation is done using relevant matlab files which are shown in the following order:
+1) AllinOne27Sep2023OwnAprroach.m
+2) 
