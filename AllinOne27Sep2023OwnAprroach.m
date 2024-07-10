@@ -2498,99 +2498,99 @@ disp(averages);
 % phik = optimvar('phik',Numv,'Type','integer','LowerBound',0,'UpperBound',1); 
 % ttransij1 = optimvar('ttransij1',Numtk,'Type','continuous','LowerBound',min(ttransij),'UpperBound',max(ttransij)); 
 % texeij1 = optimvar('texeij1',Numtk,'Type','continuous','LowerBound',min(texeij),'UpperBound',max(texeij)); 
-rng(0) % For reproducibility
-constr = optimconstr(Numtk,1);
-% X0 = [StoreInitialization.theta1_struct,StoreInitialization.Phik_struct];
-% X0.theta = theta1;
-% X0.ttransij1 = ttransij;
-% X0.texeij1 = texeij;
-D = StoreInitialization.D_struct;
-for loop1 = 1:1:Numtk
-if(matrixforAlgo3(loop1,4) == 0)
-    D_Cloud(1,loop1) = D(1,loop1);
-    F_Cloud(1,loop1) = F(1,loop1);
-end
-end
+% rng(0) % For reproducibility
+% constr = optimconstr(Numtk,1);
+% % X0 = [StoreInitialization.theta1_struct,StoreInitialization.Phik_struct];
+% % X0.theta = theta1;
+% % X0.ttransij1 = ttransij;
+% % X0.texeij1 = texeij;
+% D = StoreInitialization.D_struct;
+% for loop1 = 1:1:Numtk
+% if(matrixforAlgo3(loop1,4) == 0)
+%     D_Cloud(1,loop1) = D(1,loop1);
+%     F_Cloud(1,loop1) = F(1,loop1);
+% end
+% end
 % function Ttotal = FCVEC06January2022V2(x,x0,StoreInitialization)
 % fun = @(x)FCVEC06January2022V2(x,X0,StoreInitialization);
 % fun = @(x)FCVEC06January2022V2(x,StoreInitialization);
-fun = @(x)FCVEC06January2022V2(x);
-% fun = @FCVEC06January2022V2;
-% fun = @(x)FCVEC06January2022V2;
-% fun = @(x)FCVEC06January2022V2;
-% A = +Inf;
-% b = +Inf;
-% Aeq = +Inf;
-% beq = +Inf;
-% % beq = constr;
-% % lb = +Inf;
-% lb = [0];
-% % ub = +Inf;
-% ub = [1];
-ttransij1 = StoreInitialization.ttransij_struct;
-texeij1 = StoreInitialization.texeij_struct;
-cdk = StoreInitialization.cdk_struct;
-% x(1:Numtk+1) = Numtk;
-% ncon = @(x,Numtk,constr,ttransij1,texeij1,cdk)nlcons(x,Numtk,constr,ttransij1,texeij1,cdk);
-% ncon = @nlcons;
-ncon = @(x)nlcons(x);
-                                                    %x,Numtk,constr,ttransij1,texeij1,cdk
-% options = optimoptions(@fmincon,'Algorithm','interior-point',...
-%  'SpecifyObjectiveGradient',true,'SpecifyConstraintGradient',true,...
-%  'PlotFcn',{@optimplotx,@optimplotfval,@optimplotfirstorderopt});
-% options = optimoptions(@fmincon,'Algorithm','interior-point',...
-%  'PlotFcn',{@optimplotx,@optimplotfval,@optimplotfirstorderopt});
-% options = optimoptions('fmincon','MaxFunctionEvaluations', 1000000,'MaxIterations',500);
-% options = optimoptions('fmincon','MaxFunctionEvaluations', 10000000,'MaxIterations',500);     % MaxFunctionEvaluations = 1.0000000e+07
-% options = optimoptions('fmincon','MaxFunctionEvaluations', 100000000);     % MaxFunctionEvaluations = 1.0000000e+08
-options = optimoptions('fmincon');     % MaxFunctionEvaluations = defaults.....
-% opts = optimoptions('ga','MaxStallGenerations',50,'FunctionTolerance',1e-10,...
-%     'MaxGenerations',300,'PlotFcn',@gaplotbestfun);
-% options = optimoptions('ga');
-%[Ttotal,theta,Tftotal,Tctotal] = FCVEC11January2022V4(X0,StoreInitialization,ttransij1,texeij1,theta,D_Cloud,F_Cloud,DPrc,pc,Muc,Mui,Muk,B,pi,pm,W,Wfog,t,T,cdk,j,i,TasksperVehicle,NTotal,Numv,Numtk,TijPrime,loop1,Fprime,PhikPrime,D,F,Ravailk,Phik,theta1,matrixforAlgo3);               
-% TtotalHandle = @(theta,Tftotal,Tctotal)sum(theta(:,1).*Tftotal + (1 - theta(:,1)).*Tctotal','all');          % Equation (13) 
-% x = fmincon(fun, X0, A, b, Aeq, beq, lb, ub, ncon, options);
-% x = fmincon(fun(x,StoreInitialization), X0, A, b, Aeq, beq, lb, ub, ncon(x,Numtk,constr,ttransij1,texeij1,cdk), options); 
-% % x = fmincon(fun(x), X0, A, b, Aeq, beq, lb, ub,
-% ncon(x,Numtk,constr,ttransij1,texeij1,cdk), options);   ...
-% Error using optimfcnchk (line 101)  ..................Obtained error on 19 January 2022
-% FUN must be a function, a valid character vector expression, or an inline function object.
-% 
-% Error in fmincon (line 425)
-%    funfcn = optimfcnchk(FUN,'fmincon',length(varargin),funValCheck,flags.grad,flags.hess,false,Algorithm);
-% x = fmincon(fun(x), X0, A, b, Aeq, beq, lb, ub, ncon(x), options);
-% x = fmincon(fun, X0, A, b, Aeq, beq, lb, ub, ncon, options);
-[x,fval,exitflag,output,lambda,grad,hessian] = fmincon(fun, X0, A, b, Aeq, beq, lb, ub, ncon, options);
-% rng(0,'twister') % for reproducibility
-% [x,fval,exitflag] = ga(@ackleyfcn,nVar,[],[],[],[], ...
-  %   lb,ub,@eqCon,[1 3 5],opts);
-% x = ga(fun, X0, A, b, Aeq, lb, ub, ncon, options);
-% [sol,fval] = fmincon(fun, X0, A, b, Aeq, beq, lb, ub, ncon, options);
-ElapsedTime3(loop12) = toc;
-Values4Graph(loop12) = fval+ElapsedTime3(loop12);
-% end
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% % "Ravail" keeps number of OBCU-mounted fog-vehicles with redundant/available % computation-resources.....
-theta_x_formated = zeros(1,Numtk);
-Phik_x_formated = zeros(1,Numv);
-theta_x = x(1,1:Numtk);
-theta_x_formated = theta_x >= 0.5;       % Finding values that are greate than 0.5 in theta...
-                                         % variable. φt = 1 if tasks cached by RSU
-                                         % at the tth time slot are all executed at the fog vehicles and 0 otherwise.                                        
-Phik_x = x(1,floor(Numtk+size(ttransij,2)+size(texeij,2)+size(D_Cloud,2)+...
-    size(F_Cloud,2)+size(MuRSU,2)+...
-    size(MaxNumtk,2)+ size(E,2)+ size(DPrc,2)+size(pc,2)+size(Muc,2)+size(Mui,2)+size(Muk,2)+...          
-    size(B,2)+size(pi,2)+size(pm,2)+ size(W,2)+size(Wfog,2)+size(t,2)+...                                   
-    size(T,2)+size(cdk,2)+size(j,2)+ size(i,2)+ size(TasksperVehicle,2)+size(NTotal,2)+...
-    size(Numv,2)+ size(Numtk,2)+size(TijPrime,2)+size(loop1,2)+...
-    size(Fprime,2)+size(PhikPrime,2)+size(D,2)+size(F,2)+size(Ravailk,2)+1):...
-    floor(Numtk+size(ttransij,2)+ size(texeij,2)+ size(D_Cloud,2)+size(F_Cloud,2)+...
-    size(MuRSU,2)+size(MaxNumtk,2)+size(E,2)+size(DPrc,2)+size(pc,2)+size(Muc,2)+...
-    size(Mui,2)+size(Muk,2)+size(B,2)+size(pi,2)+size(pm,2)+size(W,2)+size(Wfog,2)+...
-    size(t,2)+size(T,2)+size(cdk,2)+size(j,2)+size(i,2)+size(TasksperVehicle,2)+...
-    size(NTotal,2)+size(Numv,2)+size(Numtk,2)+size(TijPrime,2)+size(loop1,2)+...
-    size(Fprime,2)+size(PhikPrime,2)+size(D,2)+size(F,2)+size(Ravailk,2)+Numv));
-Phik_x_formated = Phik_x >= 0;         % Same explanation as above for theta, theta_x and theta_x_formated.....  
+% fun = @(x)FCVEC06January2022V2(x);
+% % fun = @FCVEC06January2022V2;
+% % fun = @(x)FCVEC06January2022V2;
+% % fun = @(x)FCVEC06January2022V2;
+% % A = +Inf;
+% % b = +Inf;
+% % Aeq = +Inf;
+% % beq = +Inf;
+% % % beq = constr;
+% % % lb = +Inf;
+% % lb = [0];
+% % % ub = +Inf;
+% % ub = [1];
+% ttransij1 = StoreInitialization.ttransij_struct;
+% texeij1 = StoreInitialization.texeij_struct;
+% cdk = StoreInitialization.cdk_struct;
+% % x(1:Numtk+1) = Numtk;
+% % ncon = @(x,Numtk,constr,ttransij1,texeij1,cdk)nlcons(x,Numtk,constr,ttransij1,texeij1,cdk);
+% % ncon = @nlcons;
+% ncon = @(x)nlcons(x);
+%                                                     %x,Numtk,constr,ttransij1,texeij1,cdk
+% % options = optimoptions(@fmincon,'Algorithm','interior-point',...
+% %  'SpecifyObjectiveGradient',true,'SpecifyConstraintGradient',true,...
+% %  'PlotFcn',{@optimplotx,@optimplotfval,@optimplotfirstorderopt});
+% % options = optimoptions(@fmincon,'Algorithm','interior-point',...
+% %  'PlotFcn',{@optimplotx,@optimplotfval,@optimplotfirstorderopt});
+% % options = optimoptions('fmincon','MaxFunctionEvaluations', 1000000,'MaxIterations',500);
+% % options = optimoptions('fmincon','MaxFunctionEvaluations', 10000000,'MaxIterations',500);     % MaxFunctionEvaluations = 1.0000000e+07
+% % options = optimoptions('fmincon','MaxFunctionEvaluations', 100000000);     % MaxFunctionEvaluations = 1.0000000e+08
+% options = optimoptions('fmincon');     % MaxFunctionEvaluations = defaults.....
+% % opts = optimoptions('ga','MaxStallGenerations',50,'FunctionTolerance',1e-10,...
+% %     'MaxGenerations',300,'PlotFcn',@gaplotbestfun);
+% % options = optimoptions('ga');
+% %[Ttotal,theta,Tftotal,Tctotal] = FCVEC11January2022V4(X0,StoreInitialization,ttransij1,texeij1,theta,D_Cloud,F_Cloud,DPrc,pc,Muc,Mui,Muk,B,pi,pm,W,Wfog,t,T,cdk,j,i,TasksperVehicle,NTotal,Numv,Numtk,TijPrime,loop1,Fprime,PhikPrime,D,F,Ravailk,Phik,theta1,matrixforAlgo3);               
+% % TtotalHandle = @(theta,Tftotal,Tctotal)sum(theta(:,1).*Tftotal + (1 - theta(:,1)).*Tctotal','all');          % Equation (13) 
+% % x = fmincon(fun, X0, A, b, Aeq, beq, lb, ub, ncon, options);
+% % x = fmincon(fun(x,StoreInitialization), X0, A, b, Aeq, beq, lb, ub, ncon(x,Numtk,constr,ttransij1,texeij1,cdk), options); 
+% % % x = fmincon(fun(x), X0, A, b, Aeq, beq, lb, ub,
+% % ncon(x,Numtk,constr,ttransij1,texeij1,cdk), options);   ...
+% % Error using optimfcnchk (line 101)  ..................Obtained error on 19 January 2022
+% % FUN must be a function, a valid character vector expression, or an inline function object.
+% % 
+% % Error in fmincon (line 425)
+% %    funfcn = optimfcnchk(FUN,'fmincon',length(varargin),funValCheck,flags.grad,flags.hess,false,Algorithm);
+% % x = fmincon(fun(x), X0, A, b, Aeq, beq, lb, ub, ncon(x), options);
+% % x = fmincon(fun, X0, A, b, Aeq, beq, lb, ub, ncon, options);
+% [x,fval,exitflag,output,lambda,grad,hessian] = fmincon(fun, X0, A, b, Aeq, beq, lb, ub, ncon, options);
+% % rng(0,'twister') % for reproducibility
+% % [x,fval,exitflag] = ga(@ackleyfcn,nVar,[],[],[],[], ...
+%   %   lb,ub,@eqCon,[1 3 5],opts);
+% % x = ga(fun, X0, A, b, Aeq, lb, ub, ncon, options);
+% % [sol,fval] = fmincon(fun, X0, A, b, Aeq, beq, lb, ub, ncon, options);
+% ElapsedTime3(loop12) = toc;
+% Values4Graph(loop12) = fval+ElapsedTime3(loop12);
+% % end
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % % "Ravail" keeps number of OBCU-mounted fog-vehicles with redundant/available % computation-resources.....
+% theta_x_formated = zeros(1,Numtk);
+% Phik_x_formated = zeros(1,Numv);
+% theta_x = x(1,1:Numtk);
+% theta_x_formated = theta_x >= 0.5;       % Finding values that are greate than 0.5 in theta...
+%                                          % variable. φt = 1 if tasks cached by RSU
+%                                          % at the tth time slot are all executed at the fog vehicles and 0 otherwise.                                        
+% Phik_x = x(1,floor(Numtk+size(ttransij,2)+size(texeij,2)+size(D_Cloud,2)+...
+%     size(F_Cloud,2)+size(MuRSU,2)+...
+%     size(MaxNumtk,2)+ size(E,2)+ size(DPrc,2)+size(pc,2)+size(Muc,2)+size(Mui,2)+size(Muk,2)+...          
+%     size(B,2)+size(pi,2)+size(pm,2)+ size(W,2)+size(Wfog,2)+size(t,2)+...                                   
+%     size(T,2)+size(cdk,2)+size(j,2)+ size(i,2)+ size(TasksperVehicle,2)+size(NTotal,2)+...
+%     size(Numv,2)+ size(Numtk,2)+size(TijPrime,2)+size(loop1,2)+...
+%     size(Fprime,2)+size(PhikPrime,2)+size(D,2)+size(F,2)+size(Ravailk,2)+1):...
+%     floor(Numtk+size(ttransij,2)+ size(texeij,2)+ size(D_Cloud,2)+size(F_Cloud,2)+...
+%     size(MuRSU,2)+size(MaxNumtk,2)+size(E,2)+size(DPrc,2)+size(pc,2)+size(Muc,2)+...
+%     size(Mui,2)+size(Muk,2)+size(B,2)+size(pi,2)+size(pm,2)+size(W,2)+size(Wfog,2)+...
+%     size(t,2)+size(T,2)+size(cdk,2)+size(j,2)+size(i,2)+size(TasksperVehicle,2)+...
+%     size(NTotal,2)+size(Numv,2)+size(Numtk,2)+size(TijPrime,2)+size(loop1,2)+...
+%     size(Fprime,2)+size(PhikPrime,2)+size(D,2)+size(F,2)+size(Ravailk,2)+Numv));
+% Phik_x_formated = Phik_x >= 0;         % Same explanation as above for theta, theta_x and theta_x_formated.....  
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
