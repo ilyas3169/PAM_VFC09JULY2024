@@ -13,8 +13,8 @@ Now the expected response latencies by PAM, mCT, MCT, and FCFS need to be confir
 ### Step 3:
 After obtaining "response latencies" values for PAM, MCT, mCT, and FCFS in variables such as averages, averages_Max,TotalTRespMinMax1 and averages_FCFS, we filled an "excel" sheet named as "Response_T_AllMethods_Vs_PAM10July2024" with probable "response latencies" values. This "excel" sheet is then used in "origin" plot generating software for final "plots" . Note that the "response latencies" values that we entered in the mentioned "excel" sheet are based on values obtained from simulation results and also values quoted by other developers in the relevant publications.
 ### Step 4:
-This step ensures the PDF-based analysis, which uses the following matlab files: 
-(1) AllinOne27Sep2023OwnAprroach.m   (For_PDF)
-(2) Allinone10July2024MaxMax_RespLatency_PAM.m (MCT1)
-(3) AllinOne10July2024MinMinversionV6.m  (mCT1)
-(4) AllinOne10July2024FCFSversionV5.m  (FCFS13)
+This step ensures the PDF-based analysis, which primarily uses the "PDFs_Generation_PAM_All_Methods_01April2024V2.m" matlab file. The values are subsequently obtained and guessed using the already mentioned matlab files, that are: <br/>
+(1) AllinOne27Sep2023OwnAprroach.m   (For_PDF)               <br/>
+(2) Allinone10July2024MaxMax_RespLatency_PAM.m (MCT1)        <br/>
+(3) AllinOne10July2024MinMinversionV6.m  (mCT1)              <br/>
+(4) AllinOne10July2024FCFSversionV5.m  (FCFS13)              <br/>
