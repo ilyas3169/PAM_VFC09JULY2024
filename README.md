@@ -25,4 +25,6 @@ This is the step in which "algorithmic run time" of considered methods and propo
 (a) ElapsedTimeAlgo3_PAM,  % for PAM <br/> 
 (b) ElapsedTimeAlgo3_FCFS,  % for FCFS <br/> 
 (c) ElapsedTimeAlgo3_mCT,  % for mCT <br/> 
-(d) ElapsedTimeAlgo3_MCT,  % for MCT 
+(d) ElapsedTimeAlgo3_MCT,  % for MCT <br/>
+### Step 7: <br/>
+
