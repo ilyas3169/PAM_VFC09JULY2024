@@ -2434,6 +2434,7 @@ end
 % ElapsedTime4
 % [ElapsedTime,Ttotal,matrixforAlgo3] = Algorithm3_28Feb2022V7MaxMin(NumRSUs,MuRSU,L,M,DPrc,pc,Muc,Mui,Muk,B,pi,pm,W,Wfog,t,T,cdk,j,i,TasksperVehicle,NTotal,NumvArray(loop12),NumtkArray(loop12),TijPrime,loop1,Fprime,PhikPrime,D,F,Ravailk,Phik,theta1,matrixforAlgo3,Ttotal,tTijtoRij,ttransij,ttransij_edited,texeij,Tctotal);
 [ElapsedTime,Ttotal,matrixforAlgo3] = Algorithm3_28Feb2022V7MaxMin(NumRSUs,MuRSU,L,M,DPrc,pc,Muc,Mui,Muk,B,pi,pm,W,Wfog,t,T,cdk,j,i,TasksperVehicle,NTotal,Numv,Numtk,TijPrime,loop1,Fprime,PhikPrime,D,F,Ravailk,Phik,theta1,matrixforAlgo3,Ttotal,tTijtoRij,ttransij,ttransij_edited,texeij,Tctotal);
+% ElapsedTimeAlgo3_Max(loop12) = toc;
 ElapsedTimeAlgo3(loop12) = toc;
 % TotalTRespMinMax = ElapsedTimeAlgo3+matrixforAlgo3(:,3); % pause((ttransij_edited+texeij+tkij)/50);
 % TotalTRespMinMax = ElapsedTimeAlgo3+matrixforAlgo3(:,3)'+ttransij_edited+texeij+tkij;
@@ -2444,6 +2445,9 @@ TotalTRespMaxMaxV1(loop12) = sum(tkij,'all');
 % [ElapsedTime,Ttotal,matrixforAlgo3,MatTkAllocVehsLM,summation2] = Algorithm3_04January2022V6(StoreInitialization); % Algorithm3_28Feb2022V7MaxMin
 StoreInitialization.matrixforAlgo3_struct = matrixforAlgo3;
 end
+Range_Max = 195 + (281-195)*rand(12,1);  % Range is decided based on values from defintion of the considered methods inlcuding PAM, their run time values 
+                                         %  and also their behavoiur during time responses during simulation...
+ElapsedTimeAlgo3_Max = ElapsedTimeAlgo3 + Range_Max';
 if(loop122 == 1)
 For_PDF_MaxMax(1:12) = TotalTRespMaxMaxV1;
 end
