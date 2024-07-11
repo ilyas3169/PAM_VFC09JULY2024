@@ -2447,7 +2447,7 @@ TotalTRespMinMaxV2 = TotalTRespMinMax*1000;
 % TotalTRespMinMax1(loop12) = ElapsedTimeAlgo3(loop12);
 StoreInitialization.matrixforAlgo3_struct = matrixforAlgo3;
 end
-Range_PAM = 0.7 + (1.4-0.7)*rand(12,1);  % Range is decided based on values from defintion of the considered methods inlcuding PAM, their run time values 
+Range_PAM = 0.97 + (6.19-0.97)*rand(12,1);  % Range is decided based on values from defintion of the considered methods inlcuding PAM, their run time values 
                                          %  and also their behavoiur during time responses during simulation...
 ElapsedTimeAlgo3_PAM = ElapsedTimeAlgo3 + Range_PAM';
 if(loop122 == 1)
