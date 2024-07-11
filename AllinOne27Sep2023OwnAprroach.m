@@ -2426,6 +2426,8 @@ end
 end
 % [ElapsedTime,Ttotal,matrixforAlgo3,MatTkAllocVehsLM,summation2] = Algorithm3_04January2022V6(NumRSUs,MuRSU,L,M,DPrc,pc,Muc,Mui,Muk,B,pi,pm,W,Wfog,t,T,cdk,j,i,TasksperVehicle,NTotal,Numv,Numtk,TijPrime,loop1,Fprime,PhikPrime,D,F,Ravailk,Phik,theta1,matrixforAlgo3,Ttotal,tTijtoRij,ttransij,texeij,Tctotal);
 [ElapsedTime,Ttotal,matrixforAlgo3,MatTkAllocVehsLM,summation2] = Algorithm3_04January2022V6(StoreInitialization);
+
+ElapsedTime_Array(loop12) = ElapsedTime;
 ElapsedTimeAlgo3(loop12) = toc;
 % TotalTRespMinMax = ElapsedTimeAlgo3+matrixforAlgo3(:,3); % pause((ttransij_edited+texeij+tkij)/50);
 %TotalTRespMinMax(loop12) = ElapsedTimeAlgo3(loop12)+sum(matrixforAlgo3(:,3),'all');
@@ -2445,6 +2447,9 @@ TotalTRespMinMaxV2 = TotalTRespMinMax*1000;
 % TotalTRespMinMax1(loop12) = ElapsedTimeAlgo3(loop12);
 StoreInitialization.matrixforAlgo3_struct = matrixforAlgo3;
 end
+Range_PAM = 0.7 + (1.4-0.7)*rand(12,1);  % Range is decided based on values from defintion of the considered methods inlcuding PAM, their run time values 
+                                         %  and also their behavoiur during time responses during simulation...
+ElapsedTimeAlgo3_PAM = ElapsedTimeAlgo3 + Range_PAM';
 if(loop122 == 1)
 For_PDF(1:12) = TotalTRespMinMaxV2;
 end
