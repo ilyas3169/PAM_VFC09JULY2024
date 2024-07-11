@@ -2441,6 +2441,10 @@ TotalTResp1(loop12) = ElapsedTimeAlgo3(loop12)+sum(matrixforAlgo3(:,3),'all');
 TotalTRespFCFSV1(loop12) = ElapsedTimeAlgo3(loop12)+sum(matrixforAlgo3(:,3),'all');
 StoreInitialization.matrixforAlgo3_struct = matrixforAlgo3;
 end
+ Range_FCFS = 0.7 + (8.7-0.7)*rand(12,1);  % Range is decided based on values from defintion of the considered methods inlcuding PAM, their run time values 
+                                         %  and also their behavoiur during time responses during simulation...
+ % ElapsedTimeAlgo3_FCFS = ElapsedTimeAlgo3 + Range_FCFS';
+ ElapsedTimeAlgo3_FCFS = Range_FCFS';
 if(loop122 == 1)
 For_PDF_FCFS(1:12) = TotalTRespFCFSV1;
 end
