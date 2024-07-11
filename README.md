@@ -18,3 +18,5 @@ This step ensures the PDF-based analysis, which primarily uses the "PDFs_Generat
 (2) Allinone10July2024MaxMax_RespLatency_PAM.m (MCT1)        <br/>
 (3) AllinOne10July2024MinMinversionV6.m  (mCT1)              <br/>
 (4) AllinOne10July2024FCFSversionV5.m  (FCFS13)              <br/>
+### Step 5:
+The next step is to use "pareto" analysis. "Pareto" analysis is used to identify predictable behaviour based on "response time (latencies)". Again the "response time (latencies)" were obtained from the earlier mentioned simulations. <br/> Microsoft Excel builtin "Pareto" analysis model is used to draw the final plot as shown in the figure 6 of article "PAM: Predictive analytics and modules-based computation offloading framework using greedy heuristics and 5G NR-V2X" accessible using doi/url : https://doi.org/10.1002/ett.5003.
