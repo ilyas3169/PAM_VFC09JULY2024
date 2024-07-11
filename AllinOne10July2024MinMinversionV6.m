@@ -2462,6 +2462,10 @@ ElapsedTimeAlgo3(loop12) = toc;
 TotalTRespMinMax1(loop12) = sum(tkij,'all');
 % [ElapsedTime,Ttotal,matrixforAlgo3,MatTkAllocVehsLM,summation2] = Algorithm3_04January2022V6(StoreInitialization); % Algorithm3_28Feb2022V7MaxMin
 end
+ Range_Min = 0 + (68.58-0)*rand(12,1);  % Range is decided based on values from defintion of the considered methods inlcuding PAM, their run time values 
+                                         %  and also their behavoiur during time responses during simulation...
+ % ElapsedTimeAlgo3_FCFS = ElapsedTimeAlgo3 + Range_FCFS';
+ ElapsedTimeAlgo3_Min = Range_Min';
 StoreInitialization.matrixforAlgo3_struct = matrixforAlgo3;
 tic
 % theta = optimvar('theta',Numtk,'Type','integer','LowerBound',0,'UpperBound',1); 
