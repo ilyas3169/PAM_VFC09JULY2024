@@ -21,6 +21,8 @@ This step ensures the PDF-based analysis, which primarily uses the "PDFs_Generat
 ### Step 5:
 The next step is to use "pareto" analysis. "Pareto" analysis is used to identify predictable behaviour based on "response time (latencies)". Again the "response time (latencies)" were obtained from the earlier mentioned simulations. <br/> Microsoft Excel builtin "Pareto" analysis model is used to draw the final plot as shown in the figure 6 of article "PAM: Predictive analytics and modules-based computation offloading framework using greedy heuristics and 5G NR-V2X" accessible using doi/url : https://doi.org/10.1002/ett.5003.
 ### Step 6: <br/>
-This is the step in which "algorithmic run time" of considered methods and proposed PAM are calculated. The related contents regarding "algorithmic run time" can be found in the article "PAM: Predictive analytics and modules-based computation offloading framework using greedy heuristics and 5G NR-V2X" accessible using doi/url : https://doi.org/10.1002/ett.5003. However, how did we obtained the values as plotted in figure 7 of the mentioned article, is elaborated in this step. To calculate the "algorithmic run time" of considered methods and proposed PAM, we used the same matlab ".m" files as mentioned in "step-4" and "step-2". However, the variables used to store the values of the "algorithmic run time" are: <br\> 
-(a) ElapsedTimeAlgo3_PAM,  % for PAM 
-(b) 
+This is the step in which "algorithmic run time" of considered methods and proposed PAM are calculated. The related contents regarding "algorithmic run time" can be found in the article "PAM: Predictive analytics and modules-based computation offloading framework using greedy heuristics and 5G NR-V2X" accessible using doi/url : https://doi.org/10.1002/ett.5003. However, how did we obtained the values as plotted in figure 7 of the mentioned article, is elaborated in this step. To calculate the "algorithmic run time" of considered methods and proposed PAM, we used the same matlab ".m" files as mentioned in "step-4" and "step-2". However, the variables used to store the values of the "algorithmic run time" are: <br/> 
+(a) ElapsedTimeAlgo3_PAM,  % for PAM <br/> 
+(b) ElapsedTimeAlgo3_FCFS,  % for FCFS <br/> 
+(c) ElapsedTimeAlgo3_mCT,  % for mCT <br/> 
+(d) ElapsedTimeAlgo3_MCT,  % for MCT 
